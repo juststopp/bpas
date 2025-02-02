@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BPAS</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      header {
+        background: url("background.jpg") no-repeat center/cover;
+        color: white;
+        text-align: center;
+        padding: 80px 20px;
+      }
+
+      header h1 {
+        font-size: 3em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      }
+
+      nav {
+        background-color: #007bff;
+        padding: 15px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        transition:
+          transform 0.3s ease,
+          color 0.3s ease;
+      }
+
+      nav a:hover {
+        color: #ffd700;
+        transform: scale(1.1);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        color: #007bff;
+        margin-bottom: 15px;
+        border-bottom: 3px solid #007bff;
+        display: inline-block;
+      }
+
+      .services,
+      .contact {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .card {
+        background: #f0f8ff;
+        padding: 20px;
+        flex: 1 1 calc(50% - 20px);
+        border-radius: 10px;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        cursor: pointer;
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      }
+
+      form {
+        display: grid;
+        gap: 15px;
+      }
+
+      input,
+      textarea,
+      select {
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+      }
+
+      button {
+        background-color: #007bff;
+        color: white;
+        padding: 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      footer {
+        background: #007bff;
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+        margin-top: 20px;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1001;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        max-width: 500px;
+        text-align: left;
+        position: relative;
+      }
+
+      .modal h3 {
+        margin-bottom: 10px;
+      }
+
+      .modal p {
+        margin-bottom: 15px;
+      }
+
+      .modal .price {
+        font-weight: bold;
+        color: #007bff;
+        text-align: right;
+      }
+
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      @media (max-width: 768px) {
+        .card {
+          flex: 1 1 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>BPAS</h1>
+      <p>Encadrer, Former et Inspirer les clubs et joueurs de demain</p>
+    </header>
+
+    <nav>
+      <a href="#services-clubs">Services aux Clubs</a>
+      <a href="#services-joueurs">Services aux Joueurs</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="services-clubs" class="container">
+      <h2>Services aux Clubs</h2>
+      <div class="services">
+        <div class="card" onclick="openModal('adoc')">
+          <h3>Formation ADOC</h3>
+          <p>
+            Optimisez la gestion de vos adhérents grâce à des formations
+            complètes.
+          </p>
+        </div>
+        <div class="card" onclick="openModal('arbitrage')">
+          <h3>Juge Arbitrage (Tennis)</h3>
+          <p>
+            Encadrez vos compétitions avec des juges arbitres formés et
+            certifiés.
+          </p>
+        </div>
+        <div class="card" onclick="openModal('pickleball')">
+          <h3>Animations Pickleball</h3>
+          <p>
+            Dynamisez vos événements sportifs avec des activités de pickleball
+            innovantes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services-joueurs" class="container">
+      <h2>Services aux Joueurs</h2>
+      <div class="services">
+        <div class="card" onclick="openModal('tennis')">
+          <h3>Cours de Tennis</h3>
+          <p>
+            Perfectionnez votre technique et progressez grâce à une enseignante
+            DE expérimentée.
+          </p>
+        </div>
+        <div class="card" onclick="openModal('mental')">
+          <h3>Préparation Mentale</h3>
+          <p>
+            Développez votre mental pour améliorer vos performances en
+            compétition.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="container">
+      <h2>Contactez-nous</h2>
+      <form
+        action="mailto:sabine@beaugendre.org"
+        method="post"
+        enctype="text/plain"
+      >
+        <label for="category">Catégorie :</label>
+        <select id="category" name="category">
+          <option value="clubs">Services aux Clubs</option>
+          <option value="joueurs">Services aux Joueurs</option>
+          <option value="autre">Autre</option>
+        </select>
+
+        <label for="name">Nom :</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Votre nom"
+          required
+        />
+
+        <label for="email">Email :</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Votre email"
+          required
+        />
+
+        <label for="message">Message :</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          placeholder="Votre message..."
+          required
+        ></textarea>
+
+        <button type="submit">Envoyer le message</button>
+      </form>
+    </section>
+
+    <footer>
+      &copy; 2025 BPAS - Tous droits réservés | Contact :
+      <a
+        href="mailto:sabine@beaugendre.org"
+        style="color: #ffd700; text-decoration: none"
+        >sabine@beaugendre.org</a
+      >
+    </footer>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3 id="modal-title"></h3>
+        <p id="modal-description"></p>
+        <div class="price" id="modal-price"></div>
+      </div>
+    </div>
+
+    <script>
+      const modal = document.getElementById("modal");
+      const modalTitle = document.getElementById("modal-title");
+      const modalDescription = document.getElementById("modal-description");
+      const modalPrice = document.getElementById("modal-price");
+
+      const services = {
+        adoc: {
+          title: "Formation ADOC",
+          description:
+            "ADOC est un logiciel de gestion des clubs. Nous offrons des formations détaillées et un accompagnement personnalisé pour vous aider à maîtriser son utilisation.",
+          price:
+            "Avec accompagnement : 1000€ (~2 semaines) | Sans accompagnement : 450€ (~3 jours)",
+        },
+        arbitrage: {
+          title: "Juge Arbitrage",
+          description:
+            "Service complet de création, modification et convocation pour vos tournois. Garantissez des compétitions équitables avec des juges qualifiés.",
+          price: "Tarif : 500€",
+        },
+        pickleball: {
+          title: "Animations Pickleball",
+          description:
+            "Organisez des événements engageants et dynamiques autour du pickleball pour dynamiser vos clubs.",
+          price: "Tarif : 100€/journée",
+        },
+        tennis: {
+          title: "Cours de Tennis",
+          description:
+            "Cours particuliers adaptés à tous les niveaux, dispensés par une enseignante DE.",
+          price: "Tarif : 25€/heure",
+        },
+        mental: {
+          title: "Préparation Mentale",
+          description:
+            "Améliorez votre gestion du stress et votre concentration grâce à un coaching mental sur mesure.",
+          price: "Tarif : 40€/heure",
+        },
+      };
+
+      function openModal(service) {
+        modalTitle.textContent = services[service].title;
+        modalDescription.textContent = services[service].description;
+        modalPrice.textContent = services[service].price;
+        modal.style.display = "flex";
+      }
+
+      function closeModal() {
+        modal.style.display = "none";
+      }
+
+      window.onclick = function (event) {
+        if (event.target === modal) {
+          closeModal();
+        }
+      };
+    </script>
+  </body>
+</html>
